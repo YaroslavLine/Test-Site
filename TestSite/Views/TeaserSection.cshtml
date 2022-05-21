@@ -1,0 +1,45 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = null;
+
+    string title = null;
+    string subTitle = null;
+    string img = null;
+    var element = Model.Value<IEnumerable<IPublishedElement>>("contentElements").Where(x => x.ContentType.Alias == "sectionTeaserControls").FirstOrDefault();
+
+    title = element.Value<string>("title");
+    subTitle = element.Value<string>("subTitle");
+    img = element.Value<IPublishedContent>("backgroundGraphic")?.Url() ?? "/img/svg/header-cubes.svg";
+}
+
+<header style="background: url('@img') no-repeat;">
+    <div class="container" id="header-container">
+        <hr class=" m-0" style="background: rgba(255, 255, 255, 0.5);height: 1px;">
+        <div class="row p-1 mt-5 ">
+            <div class="col-12 col-md-9 mb-5 p-0 d-md-none d-block">
+                <span class="nav-title display-5">
+                    @title
+                </span>
+                <hr style="color:red" />
+                <span class="display-6">@subTitle</span>
+                <img src="img/svg/swot.svg" class="img-fluid m-3" height="220" width="220" alt="">
+            </div>
+            <div class="col-12 col-md-9 mt-5 ms-3 d-none d-md-block">
+                <span class="display-4">
+                    @title
+                </span>
+                <hr style="color:red" />
+                <span class="display-6">@subTitle</span>
+            </div>
+            <div class="d-flex justify-content-end">
+                <div class=" d-none d-md-block">
+                    <img src="img/svg/swot.svg" class="img-fluid" height="550" width="550" alt="">
+                </div>
+            </div>
+            <div class="d-flex justify-content-start">
+                <a href="#" class="btn btn-warning btn-lg text-white shadow">@Umbraco.GetDictionaryValue("Link.LearnMore")</a>
+            </div>
+        </div>
+    </div>
+</header>

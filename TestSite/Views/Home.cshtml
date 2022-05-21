@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Home>
+
+@{
+    Layout = "Master.cshtml";
+
+    var elements = Model.Value<IEnumerable<IPublishedElement>>("contentElements");
+}
+
+
+@if (elements != null && elements.Count() > 0)
+{
+    foreach (var element in elements)
+    {
+        if (element.ContentType.Alias == "sectionTeaserControls")
+        {
+            @Html.Partial("TeaserSection", Model);
+        }
+        if (element.ContentType.Alias == "sectionNewsControls")
+        {
+            @Html.Partial("NewsSection", Model);
+        }
+        if (element.ContentType.Alias == "sectionFormControls")
+        {
+            @Html.Partial("FormSection", Model);
+        }
+    }
+}

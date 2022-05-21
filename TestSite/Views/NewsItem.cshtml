@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<NewsItem>
+
+@using TestSite.Core.Extensions
+@{
+    Layout = "Master.cshtml";
+
+}
+<section id="news-section" class="mt-5">
+    <div class="container">
+        <div class="display-4 mb-5">@Model.NewsTitle</div>
+        @Html.GetGridHtml(Model, framework: "bootstrap3", propertyAlias: "mainContent", fluidImages: true)
+    </div>
+</section>

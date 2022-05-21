@@ -1,0 +1,71 @@
+﻿@inherits TestSiteViewPage<NewsList>
+
+@using TestSite.Core.ViewPages;
+@{
+    Layout = "Master.cshtml";
+
+    var newsPage = NewsService.GetLastNewsPage(Model, Request);
+}
+<section style="background: url('@(Model?.BackgroundGraphic?.Url()??"")') no-repeat;">
+    <div class="container">
+        <div class="display-4 mb-5">@Model.Title</div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto mt-5">
+                @if (newsPage != null && newsPage.Results != null && newsPage.Results.Any())
+                {
+                    var news = newsPage.Results.Cast<NewsItem>();
+                    foreach (var item in news)
+                    {
+                        <div>
+                            <a class="news-link" href="@item.Url()">
+                                <h2 class="mt-3">@(item?.NewsTitle ?? item.Name)</h2>
+                                @if (!string.IsNullOrEmpty(item.NewsDescription))
+                                {
+                                    <h3 class="mt-3">@item.NewsDescription</h3>
+                                }
+                            </a>
+                            <p class="mt-4">
+                                Posted
+                                @if (!string.IsNullOrEmpty(item.AuthorName))
+                                {
+                                    @Html.Raw("by ") @item.AuthorName
+                                }
+                                on @item.NewsDate.ToString("MMMM dd, yyyy")
+                            </p>
+                        </div>
+                        <hr style="color:red" />
+                    }
+                }
+                <!-- Pager-->
+                @if (newsPage.TotalPages > 1)
+                {
+                    <ul class="pagination pagination-lg">
+                        @if (newsPage.PageNumber > 1)
+                        {
+                            <li class="page-item ">
+                                <a class="page-link bg-transparent text-danger" href="@($"{Model.Url()}?page={newsPage.PageNumber-1}&size={newsPage.PageSize}")">@*@Umbraco.GetDictionaryValue("Paging.Previous")*@Prev</a>
+                            </li>
+                        }
+                        else
+                        {
+                            @Html.Raw("&nbsp;")
+                        }
+                        <li class="page-item ">
+                            <span class="page-link bg-transparent text-danger">@*@Umbraco.GetDictionaryValue("Paging.Page")*@ Page @newsPage.PageNumber of @*@Umbraco.GetDictionaryValue("Paging.Of")*@ @newsPage.TotalPages</span>
+                        </li>
+                        @if (newsPage.PageNumber < newsPage.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link bg-transparent text-danger" href="@($"{Model.Url()}?page={newsPage.PageNumber+1}&size={newsPage.PageSize}")">@*@Umbraco.GetDictionaryValue("Paging.Next")*@Next</a>
+                            </li>
+                        }
+                        else
+                        {
+                            @Html.Raw("&nbsp;")
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</section>

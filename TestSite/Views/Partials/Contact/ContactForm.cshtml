@@ -1,0 +1,71 @@
+﻿@inherits UmbracoViewPage<ContactViewModel>
+
+@using TestSite.Core.ViewModels
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+    Model.Culture = culture;
+}
+
+
+<div id="form-outer">
+    @using (Ajax.BeginForm("SubmitForm", "ContactSurface", new AjaxOptions()
+    {
+        UpdateTargetId = "form-result",
+        LoadingElementId = "load",
+        LoadingElementDuration = 250,
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "contactForm.showResult",
+        OnFailure = "contactForm.showResult"
+    }, new { id = "contact-form" }))
+    {
+        <div class="row">
+            <div class="col-12 col-md-6 p-3 pb-0">
+                @Html.HiddenFor(c => c.ContactFormId)
+                @Html.HiddenFor(c => c.Culture)
+                <div class="col-12">
+                    <label class="form-label mt-3">@Umbraco.GetDictionaryValue("Form.NameField")</label>
+                    @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(c => c.Name, null, new { @class = "text-danger" })
+                </div>
+                <div class="col-12">
+                    <label class="form-label mt-3">@Umbraco.GetDictionaryValue("Form.EmailField")</label>
+                    @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(c => c.Email, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-12 col-md-6 p-3 pb-0">
+                <label class="form-label mt-3">@Umbraco.GetDictionaryValue("Form.MessageField")</label>
+                @Html.TextAreaFor(c => c.Message, new { @class = "form-control", rows = 4, cols = 30 })
+                @Html.ValidationMessageFor(c => c.Message, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-12 col-md-6 ps-3 pe-3">
+                <div class="col-12">
+                    <label class="form-label mt-3">@Umbraco.GetDictionaryValue("Form.CompanyField")</label>
+                    @Html.TextBoxFor(c => c.Company, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(c => c.Company, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-12 col-md-6 ps-3 pe-3 mt-auto">
+                <div class="col-12">
+                    <div class="row mt-1 align-items-end">
+                        <div class="col-12 col-md-6">
+                            <div class="g-recaptcha" data-sitekey="6LdEQQUgAAAAAM_wlRuY79wlp9JXqKC8payGx0Xf"></div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <button type="submit" id="contact-submit" class="btn btn-danger w-100 ps-4 pe-4 shadow">@Umbraco.GetDictionaryValue("Form.SubmitBtn")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="text-center mt-3" id="load" style="display:none; color:red;">
+    <p>@Umbraco.GetDictionaryValue("Form.Sending")</p>
+</div>
+<div class="text-center" id="form-result">
+
+</div>
+

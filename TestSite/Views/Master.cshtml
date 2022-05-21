@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ClientDependency.Core.Mvc
+@{
+
+    Layout = null;
+
+    var homePage = Model.AncestorOrSelf<Home>();
+    var links = homePage.Value<IEnumerable<IPublishedElement>>("Links");
+
+    Html.RequiresCss("/libs/bootstrap/css/bootstrap.min.css");
+    Html.RequiresCss("/libs/font-awesome/css/font-awesome.min.css");
+    Html.RequiresCss("/css/reset.css");
+    Html.RequiresCss("/css/style.css");
+
+    Html.RequiresJs("/libs/bootstrap/js/bootstrap.bundle.min.js");
+    Html.RequiresJs("https://www.google.com/recaptcha/api.js");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @Html.RenderCssHere()
+</head>
+<body>
+    <div class="d-flex flex-column" style="height:100vh">
+        @Html.Partial("NavBar", links)
+
+        @RenderBody()
+
+        @Html.Partial("Footer", links)
+    </div>
+    @Html.RenderJsHere()
+</body>
+</html>
+

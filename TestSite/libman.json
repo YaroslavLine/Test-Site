@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap@5.1.3",
+      "destination": "libs/bootstrap"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "font-awesome@4.7.0",
+      "destination": "libs/font-awesome/"
+    }
+  ]
+}

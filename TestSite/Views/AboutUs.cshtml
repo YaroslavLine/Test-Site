@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<AboutUs>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using TestSite.Core.Extensions
+@{
+    Layout = "Master.cshtml";
+
+    var elements = Model.Value<IEnumerable<IPublishedElement>>("contentElements");
+}
+
+<section style="background: url('@(Model?.BackgroundGraphic?.Url()??"")') no-repeat;">
+    <div class="container">
+        <div class="display-4 mb-5">@Model.Title</div>
+        @Html.GetGridHtml(Model, framework: "bootstrap3", propertyAlias: "mainContent", fluidImages: true)
+    </div>
+</section>
+@if (elements != null && elements.Count() > 0)
+{
+    foreach (var element in elements)
+    {
+        if (element.ContentType.Alias == "sectionTeaserControls")
+        {
+            @Html.Partial("TeaserSection", Model);
+        }
+        if (element.ContentType.Alias == "sectionNewsControls")
+        {
+            @Html.Partial("NewsSection", Model);
+        }
+        if (element.ContentType.Alias == "sectionFormControls")
+        {
+            @Html.Partial("FormSection", Model);
+        }
+    }
+}

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<IPublishedElement>
+@using Umbraco.Web.Models
+
+<footer class="mt-auto pt-5">
+    <div class="container mt-5">
+        <div class="row mt-5 mb-5">
+            <div class="col-12 col-md-3 mb-5">
+                <div class="mt-auto">
+                    <h5 id="footer-logo-text" class="">Sales Matrix</h5>
+                    <h6 id="footer-logo-subtext">Sales intelligence made simple</h6>
+                </div>
+                <div class="d-md-none text-center">
+                    <img class="mt-3" src="img/svg/footer-logo.svg" alt="">
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <h5 id="footer-title">
+                    Why not drive your business growth with Salesmatrix Intelligence today!
+                </h5>
+                <div class="row mt-5 text-center">
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var link in Model)
+                        {
+                            var l = link.Value<Link>("PageLink");
+                            <div class="col-12 col-md-2">
+                                <div class="me-auto mb-3"><a href="@l.Url"><span class="footer-link">@l.Name</span></a></div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

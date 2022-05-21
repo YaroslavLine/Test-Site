@@ -1,0 +1,22 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using TestSite.Core.ViewPages;
+@{
+    Layout = null;
+
+    string title = null;
+    string subTitle = null;
+    var element = Model.Value<IEnumerable<IPublishedElement>>("contentElements").Where(x => x.ContentType.Alias == "sectionNewsControls").FirstOrDefault();
+
+    title = element.Value<string>("title");
+    subTitle = element.Value<string>("subTitle");
+
+}
+<section id="news-section">
+    <div class="container p-1">
+        <p class="paragraph m-50">@title</p>
+        <hr style="color:red">
+        <p class="mb-4">@subTitle</p>
+        @{Html.RenderPartial("LastNews");}
+    </div>
+</section>
