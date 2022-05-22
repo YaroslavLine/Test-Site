@@ -54,7 +54,7 @@
                             <ul class="dropdown-menu bg-transparent" aria-labelledby="navbarDropdown">
                                 @foreach (var lang in languages)
                                 {
-                                    <li><a class="dropdown-item" href="@lang.CultureInfo.TwoLetterISOLanguageName"><span class="text-dark">@lang.CultureName</span></a></li>
+                                    <li><a class="dropdown-item" href="@("/" + lang.CultureInfo.TwoLetterISOLanguageName)"><span class="text-dark">@lang.CultureName</span></a></li>
                                 }
                             </ul>
                         </li>

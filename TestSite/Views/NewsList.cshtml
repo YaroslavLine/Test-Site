@@ -43,7 +43,7 @@
                         @if (newsPage.PageNumber > 1)
                         {
                             <li class="page-item ">
-                                <a class="page-link bg-transparent text-danger" href="@($"{Model.Url()}?page={newsPage.PageNumber-1}&size={newsPage.PageSize}")">@*@Umbraco.GetDictionaryValue("Paging.Previous")*@Prev</a>
+                                <a class="page-link bg-transparent text-danger" href="@($"{Model.Url()}?page={newsPage.PageNumber-1}&size={newsPage.PageSize}")">@Umbraco.GetDictionaryValue("Pagination.Previous")</a>
                             </li>
                         }
                         else
@@ -51,12 +51,12 @@
                             @Html.Raw("&nbsp;")
                         }
                         <li class="page-item ">
-                            <span class="page-link bg-transparent text-danger">@*@Umbraco.GetDictionaryValue("Paging.Page")*@ Page @newsPage.PageNumber of @*@Umbraco.GetDictionaryValue("Paging.Of")*@ @newsPage.TotalPages</span>
+                            <span class="page-link bg-transparent text-danger">@Umbraco.GetDictionaryValue("Pagination.Page") @newsPage.PageNumber @Umbraco.GetDictionaryValue("Pagination.Of") @newsPage.TotalPages</span>
                         </li>
                         @if (newsPage.PageNumber < newsPage.TotalPages)
                         {
                             <li class="page-item">
-                                <a class="page-link bg-transparent text-danger" href="@($"{Model.Url()}?page={newsPage.PageNumber+1}&size={newsPage.PageSize}")">@*@Umbraco.GetDictionaryValue("Paging.Next")*@Next</a>
+                                <a class="page-link bg-transparent text-danger" href="@($"{Model.Url()}?page={newsPage.PageNumber+1}&size={newsPage.PageSize}")">@Umbraco.GetDictionaryValue("Pagination.Next")</a>
                             </li>
                         }
                         else
