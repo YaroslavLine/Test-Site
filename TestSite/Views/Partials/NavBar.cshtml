@@ -1,5 +1,17 @@
-﻿@model IEnumerable<IPublishedElement>
+﻿@model ValueTuple<IEnumerable<IPublishedElement>, string, string>
+
+@using System.Globalization
+@using Umbraco.Core.Services
 @using Umbraco.Web.Models
+
+@{
+    IEnumerable<IPublishedElement> links = Model.Item1;
+    string logoText = Model.Item2;
+    string smallLogoText = Model.Item3;
+
+    ILocalizationService ls = Umbraco.Core.Composing.Current.Services.LocalizationService;
+    IEnumerable<ILanguage> languages = ls.GetAllLanguages();
+}
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
@@ -9,8 +21,8 @@
                     <div style="float:left" id="logo">
                     </div>
                     <div>
-                        <span class="logo-text">Salesmatrix.com </span><br>
-                        <span class="small-logo-text">Sales intelligence made simple</span>
+                        <span class="logo-text">@logoText</span><br>
+                        <span class="small-logo-text">@smallLogoText</span>
                     </div>
                 </a>
             </div>
@@ -21,9 +33,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    @if (Model != null && Model.Any())
+                    @if (links != null && links.Any())
                     {
-                        foreach (var link in Model)
+                        foreach (var link in links)
                         {
                             var l = link.Value<Link>("PageLink");
                             <li class="nav-item">
@@ -33,15 +45,20 @@
                             </li>
                         }
                     }
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-globe"></i>
-                        </a>
-                        <ul class="dropdown-menu bg-transparent" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/"><span class="text-dark">EN</span></a></li>
-                            <li><a class="dropdown-item" href="/uk"><span class="text-dark">UK</span></a></li>
-                        </ul>
-                    </li>
+                    @if (languages.Count() > 1)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-globe"></i>
+                            </a>
+                            <ul class="dropdown-menu bg-transparent" aria-labelledby="navbarDropdown">
+                                @foreach (var lang in languages)
+                                {
+                                    <li><a class="dropdown-item" href="@lang.CultureInfo.TwoLetterISOLanguageName"><span class="text-dark">@lang.CultureName</span></a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

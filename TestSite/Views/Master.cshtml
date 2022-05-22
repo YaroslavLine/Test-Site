@@ -1,11 +1,16 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
 @using ClientDependency.Core.Mvc
-@{
 
+@{
     Layout = null;
 
-    var homePage = Model.AncestorOrSelf<Home>();
-    var links = homePage.Value<IEnumerable<IPublishedElement>>("Links");
+    Home homePage = Model.AncestorOrSelf<Home>();
+    IEnumerable<IPublishedElement> links = homePage.Value<IEnumerable<IPublishedElement>>("Links");
+
+    string logoText = Umbraco.GetDictionaryValue("NavBar.LogoText");
+    string smallLogoText = Umbraco.GetDictionaryValue("NavBar.SmallLogoText");
+
+    ValueTuple<IEnumerable<IPublishedElement>, string, string> navBarData = (links, logoText, smallLogoText);
 
     Html.RequiresCss("/libs/bootstrap/css/bootstrap.min.css");
     Html.RequiresCss("/libs/font-awesome/css/font-awesome.min.css");
@@ -27,7 +32,7 @@
 </head>
 <body>
     <div class="d-flex flex-column" style="height:100vh">
-        @Html.Partial("NavBar", links)
+        @Html.Partial("NavBar", navBarData)
 
         @RenderBody()
 
@@ -36,4 +41,3 @@
     @Html.RenderJsHere()
 </body>
 </html>
-
