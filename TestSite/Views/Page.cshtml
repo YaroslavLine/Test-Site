@@ -1,0 +1,7 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Page>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using TestSite.Core.Extensions
+@{
+    Layout = "Master.cshtml";
+}
+@Html.GetGridHtml(Model, framework: "Clean", propertyAlias: "mainContent", fluidImages: true)

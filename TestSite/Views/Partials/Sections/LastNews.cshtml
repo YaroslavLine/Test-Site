@@ -1,0 +1,33 @@
+﻿@inherits UmbracoViewPage<NewsSectionViewModel>
+
+@using TestSite.Core.ViewModels
+@{
+//var siteRoot = Model.Root();
+//var allNewsItem = (NewsList)NewsService.GetNewsListItem(siteRoot);
+//var latestNews = NewsService.GetLastNews(siteRoot, 4).Cast<NewsItem>();
+}
+
+<div class="row p-0 m-0">
+    @if (Model.Content != null && Model.Content.Any())
+    {
+        foreach (var newsItem in Model.Content)
+        {
+            <div class="col-12 col-md-6 col-lg-3 d-flex align-items-stretch">
+                <div class="card rounded-3 p-3 mt-3 shadow">
+                    <span class="mb-3">@(newsItem.Value<DateTime>("NewsDate").ToString("MMMM dd, yyyy"))</span>
+                    <h5 class="card-title mb-4">@(newsItem?.Value("NewsTitle") ?? newsItem.Name)</h5>
+                    <p class="card-text mb-4">
+                        @newsItem.Value("NewsDescription")
+                    </p>
+                    <div class="mt-auto">
+                        <a href="@newsItem.Url()" class="card-link mt-4">@Umbraco.GetDictionaryValue("Link.LearnMore")</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+<div class="text-center mt-5">
+    <a href="@Model.NewsItem.Url()" class="btn btn-danger btn-lg ps-4 pe-4 shadow mt-5">@Umbraco.GetDictionaryValue("Home.ViewAllNews")</a>
+</div>
+

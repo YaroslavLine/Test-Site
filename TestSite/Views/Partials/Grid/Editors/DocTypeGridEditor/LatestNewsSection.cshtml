@@ -1,0 +1,11 @@
+﻿@inherits UmbracoViewPage<LatestNewsSection>
+
+<section id="form-section" class="pb-5">
+    <div class="container">
+        <p class="paragraph m-50">@Model.Title</p>
+        <hr style="color:red">
+        <p class="mb-4">@Model.Subtitle</p>
+        @*@{Html.RenderPartial("LastNews");}*@
+        @{Html.RenderAction("RenderNewsSection", "NewsSurface");}
+    </div>
+</section>

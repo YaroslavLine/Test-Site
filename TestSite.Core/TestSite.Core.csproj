@@ -272,6 +272,7 @@
   <ItemGroup>
     <Compile Include="Composing\RegisterServicesComposer.cs" />
     <Compile Include="Controllers\ContactSurfaceController.cs" />
+    <Compile Include="Controllers\NewsSurfaceController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Helpers\QueryStringHelper.cs" />
     <Compile Include="Models\ReCapthaResult.cs" />
@@ -282,6 +283,7 @@
     <Compile Include="Services\SmtpService.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\NewsResultSet.cs" />
+    <Compile Include="ViewModels\NewsSectionViewModel.cs" />
     <Compile Include="ViewPages\TestSiteViewPage.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,18 @@
+{
+  "propertyEditors": [
+    {
+      "name": "Operators Data Plugin",
+      "alias": "OperatorsDataPlugin",
+      "editor": {
+        "valueType": "TEXT",
+        "view": "~/App_Plugins/OperatorsData/Views/app.html"
+      }
+    }
+  ],
+  "css": [
+    "~/App_Plugins/OperatorsData/Css/app.css"
+  ],
+  "javascript": [
+    "~/App_Plugins/OperatorsData/Js/app.js"
+  ]
+}

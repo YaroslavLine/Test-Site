@@ -9,8 +9,11 @@
 
     string logoText = Umbraco.GetDictionaryValue("NavBar.LogoText");
     string smallLogoText = Umbraco.GetDictionaryValue("NavBar.SmallLogoText");
+    string footerTitle = Umbraco.GetDictionaryValue("Footer.Title");
 
     ValueTuple<IEnumerable<IPublishedElement>, string, string> navBarData = (links, logoText, smallLogoText);
+
+    ValueTuple<IEnumerable<IPublishedElement>, string> footerData = (links, footerTitle);
 
     Html.RequiresCss("/libs/bootstrap/css/bootstrap.min.css");
     Html.RequiresCss("/libs/font-awesome/css/font-awesome.min.css");
@@ -36,7 +39,7 @@
 
         @RenderBody()
 
-        @Html.Partial("Footer", links)
+        @Html.Partial("Footer", footerData)
     </div>
     @Html.RenderJsHere()
 </body>

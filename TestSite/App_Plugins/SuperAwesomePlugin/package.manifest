@@ -1,0 +1,18 @@
+{
+  "propertyEditors": [
+    {
+      "name": "Super Awesome Plugin",
+      "alias": "SuperAwesomePlugin",
+      "editor": {
+        "valueType": "TEXT",
+        "view": "~/App_Plugins/SuperAwesomePlugin/app.html"
+      }
+    }
+  ],
+  "css": [
+    "~/App_Plugins/SuperAwesomePlugin/app.css"
+  ],
+  "javascript": [
+    "~/App_Plugins/SuperAwesomePlugin/app.js"
+  ]
+}

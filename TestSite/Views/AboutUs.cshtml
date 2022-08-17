@@ -10,24 +10,24 @@
 <section style="background: url('@(Model?.BackgroundGraphic?.Url()??"")') no-repeat;">
     <div class="container">
         <div class="display-4 mb-5">@Model.Title</div>
-        @Html.GetGridHtml(Model, framework: "bootstrap3", propertyAlias: "mainContent", fluidImages: true)
     </div>
+    @Html.GetGridHtml(Model, framework: "CleanNF", propertyAlias: "mainContent", fluidImages: true)
 </section>
-@if (elements != null && elements.Count() > 0)
-{
-    foreach (var element in elements)
+@*@if (elements != null && elements.Count() > 0)
     {
-        if (element.ContentType.Alias == "sectionTeaserControls")
+        foreach (var element in elements)
         {
-            @Html.Partial("TeaserSection", Model);
+            if (element.ContentType.Alias == "sectionTeaserControls")
+            {
+                @Html.Partial("TeaserSection", Model);
+            }
+            if (element.ContentType.Alias == "sectionNewsControls")
+            {
+                @Html.Partial("NewsSection", Model);
+            }
+            if (element.ContentType.Alias == "sectionFormControls")
+            {
+                @Html.Partial("FormSection", Model);
+            }
         }
-        if (element.ContentType.Alias == "sectionNewsControls")
-        {
-            @Html.Partial("NewsSection", Model);
-        }
-        if (element.ContentType.Alias == "sectionFormControls")
-        {
-            @Html.Partial("FormSection", Model);
-        }
-    }
-}
+    }*@

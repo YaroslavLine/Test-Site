@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IPublishedElement>
+﻿@model ValueTuple<IEnumerable<IPublishedElement>, string>
 @using Umbraco.Web.Models
 
 <footer class="mt-auto pt-5">
@@ -15,12 +15,12 @@
             </div>
             <div class="col-12 col-md-9">
                 <h5 id="footer-title">
-                    Why not drive your business growth with Salesmatrix Intelligence today!
+                    @Model.Item2
                 </h5>
                 <div class="row mt-5 text-center">
-                    @if (Model != null && Model.Any())
+                    @if (Model.Item1 != null && Model.Item1.Any())
                     {
-                        foreach (var link in Model)
+                        foreach (var link in Model.Item1)
                         {
                             var l = link.Value<Link>("PageLink");
                             <div class="col-12 col-md-2">

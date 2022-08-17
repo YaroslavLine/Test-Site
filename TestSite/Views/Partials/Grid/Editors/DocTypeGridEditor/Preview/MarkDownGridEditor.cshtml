@@ -1,0 +1,10 @@
+﻿@inherits UmbracoViewPage
+
+@using MarkdownSharp
+
+@{ 
+    var md = new Markdown();
+    var val = Model.Value<string>("markdown");
+    var htmlString = md.Transform(val);
+}
+@Html.Raw(htmlString)

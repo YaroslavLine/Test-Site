@@ -1,0 +1,22 @@
+﻿@inherits UmbracoViewPage<ContactFormSection>
+
+@using ClientDependency.Core.Mvc;
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js");
+    Html.RequiresJs("/scripts/jquery.validate.min.js");
+    Html.RequiresJs("/scripts/jquery.validate.unobtrusive.min.js");
+    Html.RequiresJs("/scripts/jquery.unobtrusive-ajax.min.js");
+    Html.RequiresJs("/scripts/contactForm.js");
+}
+<section id="form-section" class="pb-5">
+    <div class="container">
+        <p class="paragraph m-50">@Model.Title</p>
+        <hr style="color:red">
+        <p class="mb-4">@Model.Subtitle</p>
+        @{Html.RenderAction("RenderForm", "ContactSurface");}
+    </div>
+</section>

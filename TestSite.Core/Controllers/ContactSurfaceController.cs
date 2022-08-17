@@ -5,12 +5,11 @@ using Umbraco.Web;
 using Umbraco.Web.Mvc;
 using TestSite.Core.Services;
 using Umbraco.Core.Models.PublishedContent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using Newtonsoft.Json;
 using TestSite.Core.Models;
 using System.Configuration;
+using Newtonsoft.Json.Linq;
 
 namespace TestSite.Core.Controllers
 {
@@ -45,10 +44,27 @@ namespace TestSite.Core.Controllers
             }
 
             _variationContextAccessor.VariationContext = new VariationContext(model.Culture);
+
             IPublishedContent contactPage = UmbracoContext.Content.GetById(false, model.ContactFormId);
-            var element = contactPage.Value<IEnumerable<IPublishedElement>>("contentElements").FirstOrDefault(x => x.ContentType.Alias == "sectionFormControls");
-            var successMessage = element.Value<IHtmlString>("successMessage");
-            var errorMessage = element.Value<IHtmlString>("errorMessage");
+            //var element = contactPage.Value<IEnumerable<IPublishedElement>>("contentElements").FirstOrDefault(x => x.ContentType.Alias == "sectionFormControls");
+            var successMessage = contactPage.Value<IHtmlString>("successMessage");
+            var errorMessage = contactPage.Value<IHtmlString>("errorMessage");
+
+
+            JObject obj = (JObject)contactPage.Value("mainContent");
+            foreach (var item in obj.GetValue("sections")[0]["rows"][0]["areas"][0]["controls"])
+            {
+                if (item["value"]["dtgeContentTypeAlias"].ToString() == "contactFormSection")
+                {
+                    successMessage = new HtmlString(item["value"]["value"]["successMessage"].ToString());
+                    errorMessage = new HtmlString(item["value"]["value"]["errorMessage"].ToString());
+                }
+            }
+
+
+
+            var element = contactPage.Value("errorMessage");
+
             return PartialView("~/Views/Partials/Contact/Result.cshtml", sent ? successMessage : errorMessage);
         }
     }

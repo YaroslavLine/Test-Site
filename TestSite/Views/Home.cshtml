@@ -1,13 +1,14 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Home>
-
+@using TestSite.Core.Extensions
 @{
     Layout = "Master.cshtml";
 
     var elements = Model.Value<IEnumerable<IPublishedElement>>("contentElements");
 }
 
+@Html.GetGridHtml(Model, framework: "Clean", propertyAlias: "mainContent", fluidImages: true)
 
-@if (elements != null && elements.Count() > 0)
+@*@if (elements != null && elements.Count() > 0)
 {
     foreach (var element in elements)
     {
@@ -24,4 +25,4 @@
             @Html.Partial("FormSection", Model);
         }
     }
-}
+}*@

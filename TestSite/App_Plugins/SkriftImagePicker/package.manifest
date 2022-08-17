@@ -1,0 +1,23 @@
+{
+  "gridEditors": [
+    {
+      "name": "Small Image box",
+      "alias": "SmallImageBox",
+      "view": "~/App_Plugins/SkriftImagePicker/Views/GridEditor.html",
+      "icon": "icon-pictures-alt-2",
+      "config": {
+        "title": {
+          "mode": "required",
+          "placeholder": "Enter an image title"
+        },
+        "description": {
+          "mode": "optional",
+          "placeholder": "Optional: Enter an image description"
+        }
+      }
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/SkriftImagePicker/Views/controller.js"
+  ]
+}

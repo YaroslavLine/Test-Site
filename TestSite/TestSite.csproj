@@ -92,6 +92,9 @@
     <Reference Include="Markdown, Version=2.0.0.0, Culture=neutral, PublicKeyToken=1b320cc08ad5aa89, processorArchitecture=MSIL">
       <HintPath>..\packages\Markdown.2.2.1\lib\net451\Markdown.dll</HintPath>
     </Reference>
+    <Reference Include="MarkdownSharp, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MarkdownSharp.2.0.5\lib\net40\MarkdownSharp.dll</HintPath>
+    </Reference>
     <Reference Include="MessagePack, Version=2.2.0.0, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
       <HintPath>..\packages\MessagePack.2.2.85\lib\netstandard2.0\MessagePack.dll</HintPath>
     </Reference>
@@ -146,6 +149,9 @@
     </Reference>
     <Reference Include="NPoco, Version=3.9.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NPoco.3.9.4\lib\net45\NPoco.dll</HintPath>
+    </Reference>
+    <Reference Include="Our.Umbraco.DocTypeGridEditor, Version=1.2.7610.37987, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Our.Umbraco.DocTypeGridEditor.1.2.5\lib\net45\Our.Umbraco.DocTypeGridEditor.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -298,6 +304,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\DocTypeGridEditor\Css\doctypegrideditor.css" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Js\doctypegrideditor.controllers.js" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Js\doctypegrideditor.directives.js" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Js\doctypegrideditor.resources.js" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Js\doctypegrideditor.services.js" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Lang\da-DK.xml" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Lang\en-GB.xml" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Lang\en-US.xml" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Views\doctypegrideditor.dialog.html" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Views\DocTypeGridEditor.html" />
+    <Content Include="App_Plugins\OperatorsData\Js\app.js" />
+    <Content Include="App_Plugins\OperatorsData\Views\app.html" />
+    <Content Include="App_Plugins\SkriftImagePicker\Views\controller.js" />
+    <Content Include="App_Plugins\SkriftImagePicker\Views\GridEditor.html" />
+    <Content Include="App_Plugins\SuperAwesomePlugin\app.css" />
+    <Content Include="App_Plugins\SuperAwesomePlugin\app.html" />
+    <Content Include="App_Plugins\SuperAwesomePlugin\app.js" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -321,6 +344,12 @@
     <Content Include="css\reset.css" />
     <Content Include="css\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="App_Plugins\SkriftImagePicker\package.manifest" />
+    <Content Include="App_Plugins\SuperAwesomePlugin\package.manifest" />
+    <Content Include="App_Plugins\DocTypeGridEditor\package.manifest" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Render\DocTypeGridEditor.cshtml" />
+    <Content Include="App_Plugins\DocTypeGridEditor\Render\DocTypeGridEditorPreviewer.cshtml" />
+    <Content Include="App_Plugins\OperatorsData\package.manifest" />
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
     <Content Include="Scripts\contactForm.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
@@ -337,18 +366,29 @@
   <ItemGroup>
     <Compile Include="App_Data\Models\AboutUs.generated.cs" />
     <Compile Include="App_Data\Models\ContactFormControls.generated.cs" />
+    <Compile Include="App_Data\Models\ContactFormSection.generated.cs" />
     <Compile Include="App_Data\Models\ContentControls.generated.cs" />
     <Compile Include="App_Data\Models\File.generated.cs" />
     <Compile Include="App_Data\Models\Folder.generated.cs" />
-    <Compile Include="App_Data\Models\FooterControls.generated.cs" />
+    <Compile Include="App_Data\Models\FormSection.generated.cs" />
     <Compile Include="App_Data\Models\HeaderControls.generated.cs" />
     <Compile Include="App_Data\Models\Home.generated.cs" />
     <Compile Include="App_Data\Models\Image.generated.cs" />
+    <Compile Include="App_Data\Models\LatestNewsSection.generated.cs" />
     <Compile Include="App_Data\Models\LinkItem.generated.cs" />
+    <Compile Include="App_Data\Models\LinksControls.generated.cs" />
     <Compile Include="App_Data\Models\Member.generated.cs" />
     <Compile Include="App_Data\Models\NewsControls.generated.cs" />
     <Compile Include="App_Data\Models\NewsItem.generated.cs" />
     <Compile Include="App_Data\Models\NewsList.generated.cs" />
+    <Compile Include="App_Data\Models\NewsSection.generated.cs" />
+    <Compile Include="App_Data\Models\Page.generated.cs" />
+    <Compile Include="App_Data\Models\SectionFormControls.generated.cs" />
+    <Compile Include="App_Data\Models\SectionHeaderControls.generated.cs" />
+    <Compile Include="App_Data\Models\SectionNewsControls.generated.cs" />
+    <Compile Include="App_Data\Models\SectionTeaserControls.generated.cs" />
+    <Compile Include="App_Data\Models\TeaserPageSection.generated.cs" />
+    <Compile Include="App_Data\Models\TeaserSection.generated.cs" />
     <Compile Include="App_Data\Models\UmbracoMediaArticle.generated.cs" />
     <Compile Include="App_Data\Models\UmbracoMediaAudio.generated.cs" />
     <Compile Include="App_Data\Models\UmbracoMediaVectorGraphics.generated.cs" />
@@ -393,6 +433,14 @@
     <Content Include="Views\FormSection.cshtml" />
     <Content Include="Views\NewsSection.cshtml" />
     <Content Include="Views\TeaserSection.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\DocTypeGridEditor\ContactFormSection.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\DocTypeGridEditor\Preview\MarkDownGridEditor.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\DocTypeGridEditor\MarkDownGridEditor.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\DocTypeGridEditor\LatestNewsSection.cshtml" />
+    <Content Include="Views\Partials\Sections\LastNews.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\DocTypeGridEditor\TeaserPageSection.cshtml" />
+    <Content Include="Views\Partials\Grid\CleanNF.cshtml" />
+    <Content Include="Views\Page.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -407,7 +455,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Sections\" />
+    <Folder Include="App_Plugins\OperatorsData\Css\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
